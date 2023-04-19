@@ -13,6 +13,7 @@ LICENSE file in the root directory of this source tree.
 #include <string>
 #include <variant>
 #include <vector>
+#include <stdexcept>
 
 namespace nest {
 // Magic from https://en.cppreference.com/w/cpp/utility/variant/visit

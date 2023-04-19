@@ -4,7 +4,11 @@
 *.swo
 *.swp
 *history.local
-
+*.out
+slurm-*
+slurm_*
+models/
+models_encrypted/
 *.pt
 *.pth
 

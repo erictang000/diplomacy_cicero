@@ -11,6 +11,9 @@ endif(NOT DEFINED POSTMAN_DIR)
 # For pybind11 to work on Linux.
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 #############################################
 ### LIBS ####################################
 #############################################
@@ -58,6 +61,11 @@ pybind11_add_module(
   rela
   pybind.cc
 )
+
+find_package(PythonLibs REQUIRED)
+include_directories(${PYTHON_INCLUDE_DIRS})
+
+
 target_include_directories(rela PRIVATE ${PYTHON_INCLUDE_DIRS})
 target_link_libraries(rela
   PUBLIC
@@ -74,7 +82,7 @@ target_include_directories(prioritized_replay_test PRIVATE ${PYTHON_INCLUDE_DIRS
 target_link_libraries(prioritized_replay_test
   PUBLIC
   gtest_main
-  ${TORCH_LIBRARIES} ${TORCH_PYTHON_LIBRARIES} nest
+  ${TORCH_LIBRARIES} ${TORCH_PYTHON_LIBRARIES} nest ${PYTHON_LIBRARIES}
 )
 set_target_properties(prioritized_replay_test PROPERTIES CXX_STANDARD 17)
 add_test(NAME prioritized_replay_test COMMAND prioritized_replay_test)

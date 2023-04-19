@@ -299,6 +299,10 @@ class MessageHistoryUnflattener(BaseFormatHelper):
         - message: text of the message
         - phase: phase the message was sent in
         """
+        if sender[-1] == ':':
+            sender = sender[:-1]
+        if recipient[-1] == ':':
+            recipient = recipient[:-1]
         assert sender in POWERS, f"{sender} is not a power"
         assert recipient in POWERS, f"{recipient} is not a power"
         assert is_phase_name(phase), f"{phase} is not a phase name"
